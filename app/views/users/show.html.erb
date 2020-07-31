@@ -6,7 +6,7 @@
       </div>
       <div class="border-solid border-2 border-black-400 p-3">
         <div class="flex justify-start">
-          <h3 class="text-black text-3xl font-bold py-3 pr-3">Mary Fen</h3>
+          <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=current_user.name%></h3>
           <a href="<%= edit_user_path(current_user) %>" class="pt-5">
             <button class=" text-sm text-black-500 rounded border-b-2 border-yellow-500 "> Edit Profile</button>
           </a>
@@ -23,9 +23,9 @@
           </div>
         </div>
         <h3 class="pt-1">
-          This is my Insta Page
+          <%=current_user.bio%>
         </h3>
-        <h3 href="www.fg.com" class="text-blue-700 pt-1">www.maryfen.com</h3>
+        <a href="<%=current_user.website%>" class="text-blue-700 pt-1"><%=current_user.website%></a>
       </div>
     </div>
   </div>

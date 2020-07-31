@@ -1,1 +1,49 @@
-Edit Profile
+<div class="border-2 border-black-400 m-20 flex">
+
+  <div class="max-w-sm  h-screen border-r-2 border-black-400 text-lg pt-8">
+    <a href="#" class=" block px-8 py-2 hover:bg-gray-300">Edit Profile</a>
+    <a class="block px-8 py-2 hover:bg-gray-300">Change Passsword</a>
+    <a class="block px-8 py-2 hover:bg-gray-300">Authorized Applications</a>
+    <a class="block px-8 py-2 hover:bg-gray-300">Email and Sms</a>
+    <a class="block px-8 py-2 hover:bg-gray-300">Manage Contacts</a>
+    <a class="block px-8 py-2 hover:bg-gray-300">Privacy and Security</a>
+  </div>
+  <div class="pt-8 px-8 w-full ">
+    <%=form_with model: current_user do |f| %>
+    <div class="max-w-3xl mx-auto p-2  ">
+      <div class="flex justify-between">
+        <%= f.label :name ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :name , class:"w-2/3 p-2 rounded border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :username ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :username , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :website ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :website , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :bio ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_area :bio ,cols: 23, class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :email ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :email , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :phone ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :phone , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :gender ,class:"pl-4 text-lg font-bold" %>
+        <%= f.text_field :gender , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-center mt-4">
+        <%= f.submit "Submit", class:"bg-blue-500 text-white font-bold p-1 rounded " %>
+
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
