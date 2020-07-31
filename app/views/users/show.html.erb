@@ -6,8 +6,8 @@
       </div>
       <div class="border-solid border-2 border-black-400 p-3">
         <div class="flex justify-start">
-          <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=current_user.name%></h3>
-          <a href="<%= edit_user_path(current_user) %>" class="pt-5">
+          <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=@user.name%></h3>
+          <a href="<%= edit_user_path(@user) %>" class="pt-5">
             <button class=" text-sm text-black-500 rounded border-b-2 border-yellow-500 "> Edit Profile</button>
           </a>
         </div>
@@ -23,9 +23,9 @@
           </div>
         </div>
         <h3 class="pt-1">
-          <%=current_user.bio%>
+          <%=@user.bio%>
         </h3>
-        <a href="https://<%=current_user.website%>" class="text-blue-700 pt-1" target="blank"><%=current_user.website%></a>
+        <a href="https://<%=@user.website%>" class="text-blue-700 pt-1" target="blank"><%=@user.website%></a>
       </div>
     </div>
   </div>
@@ -40,9 +40,16 @@
 
   </div>
   <div class=" flex flex-wrap max-w-3xl mx-auto py-4 justify-between">
+    <% @posts.each do |post| %>
+    <%= image_tag post.image, class:"mr-2 h-56 w-56" %>
+    <%end%>
+    <%
+=begin%>
     <img class="mr-2 h-56 w-56" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" />
     <img class="mr-2 h-56 w-56" src="https://cdn.pixabay.com/photo/2014/02/27/16/10/spring-276014_960_720.jpg" />
     <img class=" h-56 w-56" src="https://cdn.pixabay.com/photo/2015/04/19/08/33/flower-729512_960_720.jpg" />
+    <%
+=end%>
 
   </div>
 </div>

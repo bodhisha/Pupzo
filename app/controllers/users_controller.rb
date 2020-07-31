@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+  # GET user/id/show
   def show
+    @user = User.find(params[:id])
+
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit
