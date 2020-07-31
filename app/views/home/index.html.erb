@@ -1,1 +1,23 @@
-Home Page
+<div class="max-w-3xl mx-auto my-8">
+  <%= form_for Post.new do |f| %>
+  <%= f.text_field :description , class:"flex justify-center w-2/3  border-2 border-gray-400"%>
+  <%= f.file_field :image ,class:"pt-2" %>
+  <%= f.submit "Create Post", class:" rounded p-1 bg-blue-400 justify-center mt-2"%>
+  <% end %>
+</div>
+<hr class="border-gray-500 mt-6" />
+
+<div class="flex mt-4 max-w-3xl mx-auto justify-center">
+  <div>
+    <% @posts.each do |post| %>
+    <div class="bg-gray-200 border-2 border-gray-400 p-4 my-4 rounded">
+      <h3 class="text-lg font-bold p-2">@<%= post.user.username%></h3>
+      <% if post.image.attached? %>
+      <%= image_tag post.image ,class:"rounded"%>
+      <% end %>
+      <h3 class="text-lg font-bold p-2"><%= post.description%></h3>
+
+    </div>
+    <% end %>
+  </div>
+</div>
