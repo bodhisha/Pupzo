@@ -44,7 +44,9 @@
   <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-start">
     <% @posts.each do |post| %>
     <div class="">
+      <%= link_to post_path(post) do %>
       <%= image_tag post.image, class:"mr-2 my-4 h-56 w-56" %>
+      <%end%>
     </div>
     <%end%>
 

@@ -23,11 +23,12 @@
 
 
       </div>
+      <%= link_to post_path(post) do %>
       <% if post.image.attached? %>
       <%= image_tag post.image ,class:"rounded"%>
       <% end %>
       <h3 class="text-lg font-bold p-2"><%= post.description%></h3>
-
+      <%end%>
     </div>
     <% end %>
   </div>
