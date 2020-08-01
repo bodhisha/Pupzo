@@ -6,8 +6,16 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  # GET /post/id
   def show
     @post = Post.find(params[:id])
+  end
+
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
+
+    redirect_to user_path(current_user)
   end
 
   private
