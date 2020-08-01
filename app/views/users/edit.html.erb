@@ -11,13 +11,18 @@
   <div class="pt-8 px-8 w-full ">
     <%=form_with model: current_user do |f| %>
     <div class="max-w-3xl mx-auto p-2  ">
-      <div class="flex justify-between">
+
+      <div class="flex justify-between mt-2">
         <%= f.label :name ,class:"pl-4 text-lg font-bold" %>
         <%= f.text_field :name , class:"w-2/3 p-2 rounded border-2 border-gray-400 " %>
       </div>
       <div class="flex justify-between mt-2">
         <%= f.label :username ,class:"pl-4 text-lg font-bold" %>
         <%= f.text_field :username , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
+      </div>
+      <div class="flex justify-between mt-2">
+        <%= f.label :display_picture ,class:"pl-4 text-lg font-bold" %>
+        <%= f.file_field :avatar , class:"w-2/3 p-1" %>
       </div>
       <div class="flex justify-between mt-2">
         <%= f.label :website ,class:"pl-4 text-lg font-bold" %>
