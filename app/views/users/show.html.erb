@@ -13,7 +13,7 @@
         </div>
         <div class="flex justify-between">
           <div class="pr-4">
-            <h3 class="font-bold">14 <span class="font-normal">Posts</span></h3>
+            <h3 class="font-bold"><%=@posts.count %> <span class="font-normal">Posts</span></h3>
           </div>
           <div class="pr-4">
             <h3 class="font-bold">324 <span class="font-normal">Followers</span></h3>
@@ -39,17 +39,13 @@
     <button class="text-md font-bold text-gray-800 mr-2">TAGGED</button>
 
   </div>
-  <div class=" flex flex-wrap max-w-3xl mx-auto py-4 justify-between">
+  <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-between">
     <% @posts.each do |post| %>
-    <%= image_tag post.image, class:"mr-2 h-56 w-56" %>
+    <div class="">
+      <%= image_tag post.image, class:"mr-2 my-4 h-56 w-56" %>
+    </div>
     <%end%>
-    <%
-=begin%>
-    <img class="mr-2 h-56 w-56" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" />
-    <img class="mr-2 h-56 w-56" src="https://cdn.pixabay.com/photo/2014/02/27/16/10/spring-276014_960_720.jpg" />
-    <img class=" h-56 w-56" src="https://cdn.pixabay.com/photo/2015/04/19/08/33/flower-729512_960_720.jpg" />
-    <%
-=end%>
+
 
   </div>
 </div>
