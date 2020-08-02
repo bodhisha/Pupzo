@@ -1,16 +1,17 @@
 <div class="max-w-3xl mx-auto my-24 bg-gray-200 rounded flex h-screen ">
   <div class=" mx-auto mt-12 max-w-2xl">
     <div class="flex w-full">
-
       <% if @post.user.avatar.attached? %>
       <%= image_tag  @post.user.avatar ,class:"rounded-full my-2 h-12 w-12 border-solid border-4 border-black"  %>
       <%end%>
       <h3 class="text-xl  font-bold px-2 py-4">@ <%=  @post.user.username%></h3>
     </div>
+    <% if @post.image.attached? %>
     <%= image_tag  @post.image , class:"w-full"%>
+    <%end%>
     <div class="flex justify-between my-2">
       <h3 class="text-lg  font-bold px-2 py-2">@<%=  @post.user.username%>: <span class="font-normal"><%=  @post.description%></span></h3>
-      <% if current_user.posts.exists?(@post.id)%>
+      <% if @post.user_id == current_user&.id %>
       <%= link_to  'Delete Post' , post_path(@post), method: :delete, class:" bg-red-700 text-white font-bold p-2 rounded", data: { confirm: 'Are you sure?' }  %>
       <%end%>
     </div>

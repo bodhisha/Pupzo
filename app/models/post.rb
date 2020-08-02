@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  after_commit :create_hash_tags, on: create
+  after_commit :create_hash_tags, on: :create
   belongs_to :user
 
   has_one_attached :image
@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
   def create_hash_tags
     extract_name_hash_tags.each do |name|
-      hash_tags.create(name:name)
-    end 
+      hash_tags.create(name: name)
+    end
   end
 end

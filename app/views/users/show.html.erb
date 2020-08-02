@@ -9,9 +9,11 @@
       <div class="border-solid border-2 border-black-400 p-3">
         <div class="flex justify-start">
           <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=@user.name%></h3>
+          <% if @user.id == current_user&.id%>
           <a href="<%= edit_user_path(@user) %>" class="pt-5">
             <button class=" text-sm text-black-500 rounded border-b-2 border-yellow-500 "> Edit Profile</button>
           </a>
+          <%end%>
         </div>
         <div class="flex justify-between">
           <div class="pr-4">
@@ -43,11 +45,13 @@
   </div>
   <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-start">
     <% @posts.each do |post| %>
+    <% if post.image.attached?%>
     <div class="">
       <%= link_to post_path(post) do %>
       <%= image_tag post.image, class:"mr-2 my-4 h-56 w-56" %>
       <%end%>
     </div>
+    <%end%>
     <%end%>
 
 

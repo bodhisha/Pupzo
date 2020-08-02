@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:show]
 
   def create
     p = Post.create(post_params)
@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 
     redirect_to user_path(current_user)
   end
-
 
   private
 
