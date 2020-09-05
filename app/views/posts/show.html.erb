@@ -16,8 +16,17 @@
       <%end%>
     </div>
     <h3 class="text-xl  font-bold px-2 py-4">Comment Section</h3>
+    <% @post.comments.each do |comment| %>
+    <div class="flex justify-between">
+      <h3 class="text-lg  font-bold px-2 py-2">@ <%=  comment.user.username%>: <span class="font-normal"><%= comment.body%></span> </h3>
+    </div>
+    <%end%>
 
-
-
+    <div class="m-2">
+      <%= form_for Comment.new , url: post_comments_path(@post)  do |f| %>
+      <%= f.text_field :body , class:"flex justify-center w-2/3  border-2 border-gray-400"%>
+      <%= f.submit "Add Comment", class:" rounded p-1 bg-blue-400 justify-center mt-2"%>
+      <% end %>
+    </div>
   </div>
 </div>
