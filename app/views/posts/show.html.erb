@@ -23,12 +23,12 @@
           <%= comment.body%>
         </span>
 
-
+        <% if comment.user_id  == current_user&.id  %>
         <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>
         <i class="fas fa-trash float-right mr-2 text-red-700"></i>
         <% end %>
+        <%end%>
       </h3>
-
     </div>
     <%end%>
 
