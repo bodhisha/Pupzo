@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   validate :image_presence
 
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
   has_many :post_hash_tags
   has_many :hash_tags, through: :post_hash_tags
 
