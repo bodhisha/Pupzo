@@ -9,13 +9,26 @@
     <% if @post.image.attached? %>
     <%= image_tag  @post.image , class:"w-full"%>
     <%end%>
+
+    <% already_liked = @post.likes.find{|like| like.user_id == current_user&.id} %>
+    <%if already_liked%>
+    <%= button_to post_like_path(@post,already_liked), method: :delete  do  %>
+    <i class="fas fa-heart text-red-700 text-2xl p-2"></i>
+    <%end%>
+    <%else%>
+    <%= button_to post_likes_path(@post), method: :post  do  %>
+    <i class="far fa-heart text-red-700 text-2xl p-2"></i>
+    <%end%>
+    <%end%>
+    <h3 class="text-sm text-gray-600 px-2 "><%= @post.likes.count %><%=@post.likes.count <= 1 ? " like" : " likes"%></h3>
+
     <div class="flex justify-between my-2">
       <h3 class="text-lg  font-bold px-2 py-2">@<%=  @post.user.username%>: <span class="font-normal"><%=  @post.description%></span></h3>
       <% if @post.user_id == current_user&.id %>
       <%= link_to  'Delete Post' , post_path(@post), method: :delete, class:" bg-red-700 text-white font-bold p-2 rounded", data: { confirm: 'Are you sure?' }  %>
       <%end%>
     </div>
-    <h3 class="text-xl  font-bold px-2 py-4">Comment Section</h3>
+    <h3 class="text-xl  font-bold px-2 py-1">Comment Section</h3>
     <% @post.comments.each do |comment| %>
     <div class="">
       <h3 class="text-lg bg-gray-400 m-2 rounded-lg font-bold px-2 py-2"><%=  comment.user.username%>:
