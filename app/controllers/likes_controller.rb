@@ -9,6 +9,13 @@ class LikesController < ApplicationController
     end
   end
 
+  def destroy
+    like = current_user.likes.find(params[:id])
+    post = like.post
+    like.destroy
+    redirect_to root_path
+  end
+
   private
 
   def already_liked?
