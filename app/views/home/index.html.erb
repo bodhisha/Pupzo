@@ -10,7 +10,7 @@
 <div class="flex mt-4 max-w-3xl mx-auto justify-center">
   <div>
     <% @posts.each do |post| %>
-    <div class="bg-gray-200 border-2 border-gray-400 p-4 my-4 rounded">
+    <div class="bg-gray-200 border-2 border-gray-400 p-4 pb-8 my-4 rounded">
       <div class="flex w-full">
         <%= link_to  user_path(post.user) do%>
         <% if post.user.avatar.attached? %>
@@ -20,8 +20,6 @@
         <%= link_to user_path(post.user) do %>
         <h3 class="text-xl  font-bold px-2 py-4">@ <%=  post.user.username%></h3>
         <%end%>
-
-
       </div>
       <%= link_to post_path(post) do %>
       <% if post.image.attached? %>
@@ -29,7 +27,21 @@
       <% end %>
       <h3 class="text-lg font-bold p-2"><%= post.description%></h3>
       <%end%>
+
+      <% post.comments.last(2).each do |comment| %>
+      <h3 class="text-sm  rounded-lg font-bold px-2 pt-1  "><%=  comment.user.username%>:
+        <span class="font-normal">
+          <%= comment.body%>
+        </span>
+      </h3>
+      <%end%>
+      <%if(post.comments.count > 2)%>
+      <%= link_to post_path(post) do %>
+      <h3 class="float-right text-gray-600 "> View All <%= post.comments.count%> Comments </h3>
+      <%end%>
+      <%end%>
     </div>
+
     <% end %>
   </div>
 </div>
