@@ -2,25 +2,23 @@
 <html>
 
 <head>
-  <title>Insta</title>
+  <title>MovieGig</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-
 </head>
 
 <body>
-  <div class="insta-clone">
+  <div class="movie-gig">
     <nav class="bg-white shadow px-48 border-b border-gray-400">
       <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex px-2 lg:px-0">
             <%= link_to root_path do %>
             <div class="flex-shrink-0 flex items-center p-2 font-bold font-sans italic text-2xl">
-              Railsgram
+              MovieGig
             </div>
             <%end%>
           </div>
@@ -60,35 +58,29 @@
             <%= link_to root_path do %>
 
             <button class="flex-shrink-0 p-1 border-transparent text-gray-700 rounded-full hover:text-gray-600 focus:outline-none focus:text-gray-600 transition duration-150 ease-in-out" aria-label="Notifications">
-              <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
+              <i class="fas fa-home text-xl p-1"></i>
             </button>
             <%end%>
             <% if user_signed_in? %>
-            <a href="<%= user_path(current_user)%>" data-method="get">
+            <a href="<%= destroy_user_session_path%>" data-method="delete">
               <button class="flex-shrink-0 p-1 border-transparent text-gray-700 rounded-full hover:text-gray-600 focus:outline-none focus:text-gray-600 transition duration-150 ease-in-out" aria-label="Notifications">
-                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
-                </svg>
+                <i class="fas fa-sign-out-alt text-xl p-1"></i>
               </button>
             </a>
+            <% if current_user.avatar.attached?%>
+            <a href="<%= user_path(current_user)%>" data-method="get">
+              <div class="p-1">
+                <%= image_tag  current_user.avatar, class:"rounded-full my-5 h-10 w-10" %>
+              </div>
+            </a>
+            <%end%>
+
             <% else %>
             <a href="<%= new_user_session_path%>">
               <button class="flex-shrink-0 p-1 border-transparent text-gray-700 rounded-full hover:text-gray-600 focus:outline-none focus:text-gray-600 transition duration-150 ease-in-out" aria-label="Notifications">
-                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+                <i class="fas fa-sign-in-alt text-xl p-2"></i>
               </button> </a>
             <% end %>
-
-
-            <a href="<%= destroy_user_session_path%>" data-method="delete">
-              <button class="flex-shrink-0 p-1 border-transparent text-gray-700 rounded-full hover:text-gray-600 focus:outline-none focus:text-gray-600 transition duration-150 ease-in-out" aria-label="Notifications">
-                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </button></a>
           </div>
         </div>
       </div>
