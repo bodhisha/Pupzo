@@ -31,11 +31,11 @@
       <% already_liked = post.likes.find{|like| like.user_id == current_user&.id} %>
       <%if already_liked%>
       <%= button_to post_like_path(post,already_liked), method: :delete  do  %>
-      <i class="fas fa-heart text-red-700 text-2xl pt-2"></i>
+      <i class="fas fa-heart text-red-700 text-2xl mt-2"></i>
       <%end%>
       <%else%>
       <%= button_to post_likes_path(post), method: :post  do  %>
-      <i class="far fa-heart text-red-700 text-2xl pt-2"></i>
+      <i class="far fa-heart text-red-700 text-2xl mt-2"></i>
       <%end%>
       <%end%>
 
