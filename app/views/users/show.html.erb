@@ -1,4 +1,4 @@
-<div class="bg-gray-200 min-h-screen">
+<div class="bg-white rounded-lg shadow min-h-screen">
   <div class="max-w-3xl mx-auto">
     <div class="flex flex-row justify-around  px-6 py-4">
       <% if @user.avatar.attached?%>
@@ -6,7 +6,7 @@
         <%= image_tag  @user.avatar, class:"rounded-full my-5 h-32 w-32 border-solid border-4 border-black" %>
       </div>
       <%end%>
-      <div class="border-solid border-2 border-black-400 p-3">
+      <div class="p-3">
         <div class="flex justify-start">
           <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=@user.name%></h3>
           <% if @user.id == current_user&.id%>
@@ -34,23 +34,16 @@
     </div>
   </div>
 
-  <hr class="border-gray-500 mt-6" />
+  <hr class="border-primary-100 mt-6" />
 
-  <div class="flex justify-around max-w-md mx-auto my-4">
-    <button class="text-md font-bold text-gray-800 mr-2">POSTS</button>
-    <button class="text-md font-bold text-gray-800 mr-2">IGTV</button>
-    <button class="text-md font-bold text-gray-800 mr-2">SAVED</button>
-    <button class="text-md font-bold text-gray-800 mr-2">TAGGED</button>
-
-  </div>
   <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-start">
     <% @posts.each do |post| %>
     <% if post.image.attached?%>
-    <div class="">
-      <%= link_to post_path(post) do %>
-      <%= image_tag post.image, class:"mr-2 my-4 h-56 w-56" %>
-      <%end%>
-    </div>
+    <%= link_to post_path(post), class: "w-1/2 p-4" do %>
+    <%= image_tag post.image ,class:"relative rounded-lg shadow-lg bg-auto"%>
+    <%end%>
+
+
     <%end%>
     <%end%>
 

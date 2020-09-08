@@ -1,55 +1,79 @@
-<div class="max-w-3xl mx-auto my-24 bg-gray-200 rounded flex min-h-screen ">
-  <div class=" mx-auto mt-12 max-w-2xl">
-    <div class="flex w-full">
-      <% if @post.user.avatar.attached? %>
-      <%= image_tag  @post.user.avatar ,class:"rounded-full my-2 h-12 w-12 border-solid border-4 border-black"  %>
+<% post = @post %>
+
+<div class="max-w-3xl mx-auto">
+  <div class="rounded-lg bg-white shadow border p-4 mt-4 rounded">
+    <div class="flex w-full items-center">
+      <%= link_to  user_path(post.user) do%>
+      <% if post.user.avatar.attached? %>
+      <%= image_tag  post.user.avatar ,class:"rounded-full my-2 h-10 w-10 shadow"  %>
       <%end%>
-      <h3 class="text-xl  font-bold px-2 py-4">@ <%=  @post.user.username%></h3>
+      <%end%>
+      <%= link_to user_path(post.user) do %>
+      <h3 class="text-xl  font-bold px-2 py-4"><%=  post.user.username%></h3>
+      <%end%>
     </div>
-    <% if @post.image.attached? %>
-    <%= image_tag  @post.image , class:"w-full"%>
+    <%= link_to post_path(post) do %>
+    <% if post.image.attached? %>
+    <div class="mx-auto">
+      <%= image_tag post.image ,class:"relative rounded-lg shadow-lg"%>
+    </div>
+    <% end %>
     <%end%>
 
-    <% already_liked = @post.likes.find{|like| like.user_id == current_user&.id} %>
-    <%if already_liked%>
-    <%= button_to post_like_path(@post,already_liked), method: :delete  do  %>
-    <i class="fas fa-heart text-red-700 text-2xl m-2"></i>
-    <%end%>
-    <%else%>
-    <%= button_to post_likes_path(@post), method: :post  do  %>
-    <i class="far fa-heart text-red-700 text-2xl m-2"></i>
-    <%end%>
-    <%end%>
-    <h3 class="text-sm text-gray-600 px-2 "><%= @post.likes.count %><%=@post.likes.count <= 1 ? " like" : " likes"%></h3>
 
-    <div class="flex justify-between my-2">
-      <h3 class="text-lg  font-bold px-2 py-2">@<%=  @post.user.username%>: <span class="font-normal"><%=  @post.description%></span></h3>
+    <% already_liked = post.likes.find{|like| like.user_id == current_user&.id} %>
+    <div class="flex justify-between items-center">
+      <div class="flex items-center py-1 mt-3">
+        <div class="flex items-center">
+          <%if already_liked%>
+          <%= button_to post_like_path(post,already_liked), method: :delete  do  %>
+          <i class="fas fa-heart text-primary-700 text-xl"></i>
+          <%end%>
+          <%else%>
+          <%= button_to post_likes_path(post), method: :post  do  %>
+          <i class="far fa-heart text-primary-700 text-xl"></i>
+          <%end%>
+          <%end%>
+          <h3 class="ml-2 text-sm text-gray-600 "><%= post.likes.count %><%=post.likes.count <= 1 ? " like" : " likes"%></h3>
+        </div>
+        <div class="ml-4 flex items-center">
+          <i class="fas fa-comment-alt text-primary-700 text-lg"></i>
+          <h3 class="ml-2 text-sm text-gray-600 "><%=  post.comments.count %><%= post.comments.count <= 1 ? " Comment" : " Comments"%></h3>
+        </div>
+      </div>
+
       <% if @post.user_id == current_user&.id %>
-      <%= link_to  'Delete Post' , post_path(@post), method: :delete, class:" bg-red-700 text-white font-bold p-2 rounded", data: { confirm: 'Are you sure?' }  %>
+      <%= button_to post_path(@post), method: :delete, class:"hover:bg-primary-100 px-2 py-1 rounded text-primary-700 font-semibold", data: { confirm: 'Are you sure?' }  do %>
+      <i class="fas fa-trash-alt text-primary-700 text-lg mr-2"></i>
+      Delete Post
+      <%end%>
       <%end%>
     </div>
-    <h3 class="text-xl  font-bold px-2 py-1">Comment Section</h3>
-    <% @post.comments.each do |comment| %>
-    <div class="">
-      <h3 class="text-lg bg-gray-400 m-2 rounded-lg font-bold px-2 py-2"><%=  comment.user.username%>:
-        <span class="font-normal">
-          <%= comment.body%>
-        </span>
-
-        <% if comment.user_id  == current_user&.id  %>
-        <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="fas fa-trash float-right mr-2 text-red-700"></i>
-        <% end %>
-        <%end%>
-      </h3>
+    <h3 class="mt-2 text-sm font-bold "><%= post.description%></h3>
+    <% post.comments.each do |comment| %>
+    <div class="flex justify-between items-center border-t border-primary-100 ">
+      <div>
+        <h3 class="text-xs font-bold py-2  "><%=  comment.user.username%>:
+          <span class="font-normal">
+            <%= comment.body%>
+          </span>
+        </h3>
+      </div>
+      <% if comment.user_id  == current_user&.id  %>
+      <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <i class="ml-2 fas fa-trash-alt text-primary-700"></i>
+      <% end %>
+      <%end%>
     </div>
     <%end%>
 
-    <div class="m-2">
+
+    <div class="flex w-full flex-col">
       <%= form_for Comment.new , url: post_comments_path(@post)  do |f| %>
-      <%= f.text_field :body , placeholder: "Enter the Comment...", class:" bg-purple-white shadow rounded p-2 flex justify-center w-full  border-2 border-gray-400"%>
-      <%= f.submit "Add Comment", class:" rounded p-1 bg-blue-400 justify-center mt-2 "%>
+      <%= f.text_field :body , placeholder: "Enter the Comment...", class:"appearance-none block w-full bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-4 leading-tight focus:outline-none focus:bg-white focus:border-primary-500"%>
+      <%= f.submit "Add Comment", class:"btn btn-primary mt-2 md:mt-0"%>
       <% end %>
     </div>
+
   </div>
 </div>

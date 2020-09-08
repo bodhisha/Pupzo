@@ -1,0 +1,40 @@
+<div class="z-40 bg-white border-b shadow-b sticky top-0 border-primary-100">
+  <div class="max-w-5xl w-full mx-auto px-3 md:px-4">
+    <nav class="flex pt-2 justify-between items-center">
+      <div class="flex w-full flex-1 justify-between text-center md:text-left">
+        <%= link_to root_path do %>
+        <div class=" flex items-center p-2 font-black text-primary-600 text-2xl">
+          MovieGig
+        </div>
+        <%end%>
+      </div>
+      <div class="flex flex-1 justify-end items-center">
+        <div class="inline-flex items-center space-x-3">
+
+          <%= link_to root_path, class: "inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <i class="fas fa-home text-xl m-1 text-primary-600"></i>
+          <%end%>
+
+          <% if user_signed_in? %>
+          <%= button_to destroy_user_session_path, method: :delete, class: "inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <i class="fas fa-sign-out-alt text-xl m-1 text-primary-600"></i>
+          <%end%>
+
+          <% if current_user.avatar.attached?%>
+          <%= link_to user_path(current_user), class: "p-1 inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <%= image_tag  current_user.avatar, class:"rounded-full my-5 h-10 w-10" %>
+          <%end%>
+          <%else%>
+          <%= link_to user_path(current_user), class: "p-1 inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <i class="fas fa-user-alt text-xl m-1 text-primary-600"></i>
+          <%end%>
+          <%end%>
+          <% else %>
+          <%= link_to new_user_session_path, class: "p-1 inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <i class="fas fa-sign-in-alt text-xl m-1 text-primary-600"></i>
+          <%end%>
+          <% end %>
+        </div>
+    </nav>
+  </div>
+</div>
