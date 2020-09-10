@@ -1,39 +1,53 @@
 <div class="bg-white rounded-lg shadow min-h-screen">
   <div class="max-w-3xl mx-auto">
-    <div class="flex flex-row justify-around  px-6 py-4">
+    <div class="flex flex-col sm:flex-row items-center sm:justify-around  px-6 py-4">
       <% if @user.avatar.attached?%>
       <div>
-        <%= image_tag  @user.avatar, class:"rounded-full my-5 h-32 w-32 border-solid border-4 border-black" %>
+        <%= image_tag  @user.avatar, class:"rounded-full my-5 h-32 w-32 shadow-lg  " %>
       </div>
       <%end%>
-      <div class="p-3">
-        <div class="flex justify-start">
-          <h3 class="text-black text-3xl font-bold py-3 pr-3"><%=@user.name%></h3>
+      <div class="py-3">
+        <div class="flex justify-between">
+          <h3 class="text-black text-3xl font-bold text-primary-700 py-3 pr-3"><%=@user.name%></h3>
           <% if @user.id == current_user&.id%>
           <a href="<%= edit_user_path(@user) %>" class="pt-5">
-            <button class=" text-sm text-black-500 rounded border-b-2 border-yellow-500 "> Edit Profile</button>
+            <button class=" btn btn-primary-ghost"> Edit Profile</button>
           </a>
           <%end%>
         </div>
         <div class="flex justify-between">
           <div class="pr-4">
-            <h3 class="font-bold"><%=@posts.count %> <span class="font-normal">Posts</span></h3>
+            <h5 class="font-black text-primary-900"><%=@posts.count %> <span class="font-normal ">Posts</span></h5>
           </div>
           <div class="pr-4">
-            <h3 class="font-bold">324 <span class="font-normal">Followers</span></h3>
+            <h5 class="font-black text-primary-900">324 <span class="font-normal">Followers</span></h5>
           </div>
           <div>
-            <h3 class="font-bold">412 <span class="font-normal">Following</span></h3>
+            <h5 class="font-black text-primary-900">412 <span class="font-normal">Following</span></h5>
           </div>
         </div>
-        <h3 class="pt-1">
+        <h4 class="pt-1 text-primary-900">
           <%=@user.bio%>
-        </h3>
+        </h4>
         <a href="https://<%=@user.website%>" class="text-blue-700 pt-1" target="blank"><%=@user.website%></a>
+        <div class="flex flex-col sm:flex-row justify-between ">
+          <div class="flex mt-2">
+            <i class="fas fa-map-marker-alt text-primary-500 text-lg"> </i>
+            <p class="ml-2 text-sm font-bold text-primary-900">Location </p>
+          </div>
+          <div class="flex mt-2">
+            <i class="fas fa-birthday-cake text-primary-500 text-lg"></i>
+            <p class="ml-2 text-sm font-bold text-primary-900">Birthday </p>
+          </div>
+          <div class="flex mt-2">
+            <i class="fas fa-calendar-alt text-primary-500 text-lg"></i>
+            <p class="ml-2 text-sm font-bold text-primary-900">Joined <%=@user.created_at.strftime("%B %Y")%> </p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
-
   <hr class="border-primary-100 mt-6" />
 
   <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-start">
