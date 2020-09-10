@@ -1,54 +1,55 @@
-<div class="border-2 border-black-400 m-20 flex">
+<div class="container mx-auto px-3 py-8 max-w-5xl">
+  <div class="bg-white shadow rounded-lg">
+    <div class="px-4 py-5 ">
+      <div class="flex  flex-col md:flex-row md:items-center">
+        <div class="w-full md:w-1/3 pr-4">
+          <h3 class="text-lg text-center font-black text-primary-700">Edit your Profile</h3>
+          <p class="mt-1 text-sm text-center text-primary-600">Update the information to make your public profile classy!</p>
+        </div>
+        <div class=" mt-5 md:mt-0 w-full md:w-2/3 ">
+          <%=form_with model: current_user do |f| %>
+          <div class="mx-auto p-2  ">
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :name ,class:" text-lg font-bold text-primary-800" %>
+              <%= f.text_field :name , placeholder: "Enter your name", class:"sm:w-2/3 w-full appearance-none bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :username ,class:" text-lg font-bold text-primary-800 " %>
+              <%= f.text_field :username ,placeholder: "Enter your username", class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :display_picture ,class:" sm:w-1/3 w-full text-lg font-bold text-primary-800" %>
+              <%= f.file_field :avatar , class:" sm:w-2/3 w-full text-center cursor-pointer truncate bg-primary-100 border border-dashed border-primary-600 p-3 items-center font-semibold rounded text-sm hover:text-primary-600 hover:bg-primary-200 hover:border-primary-500 flex-grow" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :website ,class:" text-lg font-bold text-primary-800" %>
+              <%= f.text_field :website , placeholder: "Enter your website url",class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :bio ,class:" text-lg font-bold text-primary-800" %>
+              <%= f.text_area :bio ,cols: 23,placeholder: "Enter the bio",  class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :email ,class:" text-lg font-bold text-primary-800" %>
+              <%= f.text_field :email ,placeholder: "Enter your email", class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :phone ,class:" text-lg font-bold text-primary-800" %>
+              <%= f.text_field :phone ,placeholder: "Enter your phone number", class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
+            </div>
+            <div class="flex justify-between mt-2 flex-col sm:flex-row">
+              <%= f.label :gender ,class:"text-lg font-bold text-primary-800" %>
+              <%= f.text_field :gender ,placeholder: "Male/Female", class:"sm:w-2/3 w-full appearance-none  bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-primary-500"%>
+            </div>
+            <div class="flex justify-end mt-4">
+              <%= f.submit "Submit", class:"btn btn-primary btn-large sm:w-2/3 w-full" %>
 
-  <div class="max-w-sm  h-screen border-r-2 border-black-400 text-lg pt-8">
-    <a href="#" class=" block px-8 py-2 hover:bg-gray-300">Edit Profile</a>
-    <a class="block px-8 py-2 hover:bg-gray-300">Change Passsword</a>
-    <a class="block px-8 py-2 hover:bg-gray-300">Authorized Applications</a>
-    <a class="block px-8 py-2 hover:bg-gray-300">Email and Sms</a>
-    <a class="block px-8 py-2 hover:bg-gray-300">Manage Contacts</a>
-    <a class="block px-8 py-2 hover:bg-gray-300">Privacy and Security</a>
-  </div>
-  <div class="pt-8 px-8 w-full ">
-    <%=form_with model: current_user do |f| %>
-    <div class="max-w-3xl mx-auto p-2  ">
-
-      <div class="flex justify-between mt-2">
-        <%= f.label :name ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :name , class:"w-2/3 p-2 rounded border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :username ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :username , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :display_picture ,class:"pl-4 text-lg font-bold" %>
-        <%= f.file_field :avatar , class:"w-2/3 p-1" %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :website ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :website , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :bio ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_area :bio ,cols: 23, class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :email ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :email , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :phone ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :phone , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-between mt-2">
-        <%= f.label :gender ,class:"pl-4 text-lg font-bold" %>
-        <%= f.text_field :gender , class:"w-2/3 p-2 rounded  border-2 border-gray-400 " %>
-      </div>
-      <div class="flex justify-center mt-4">
-        <%= f.submit "Submit", class:"bg-blue-500 text-white font-bold p-1 rounded " %>
-
+            </div>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
-    <% end %>
   </div>
+
 </div>
