@@ -6,10 +6,16 @@
       <%= link_to  user_path(post.user) do%>
       <% if post.user.avatar.attached? %>
       <%= image_tag  post.user.avatar ,class:"rounded-full my-2 h-10 w-10 shadow"  %>
+      <%else%>
+      <%= image_tag("dp.png", :alt => "Default DP", class:"rounded-full my-2 h-10 w-10 shadow" ) %>
       <%end%>
       <%end%>
       <%= link_to user_path(post.user) do %>
-      <h3 class="text-xl  font-bold px-2 py-4"><%=  post.user.username%></h3>
+      <%if post.user.username?%>
+      <h3 class="text-xl font-bold px-2 py-4"><%=  post.user.username%></h3>
+      <%else%>
+      <h3 class="text-xl font-bold px-2 py-4">anonymous_user</h3>
+      <%end%>
       <%end%>
     </div>
     <%= link_to post_path(post) do %>
@@ -53,11 +59,19 @@
     <% post.comments.each do |comment| %>
     <div class="flex justify-between items-center border-t border-primary-100 ">
       <div>
-        <h3 class="text-xs font-bold py-2  "><%=  comment.user.username%>:
+        <%if comment.user.username?%>
+        <h3 class="text-xs font-bold py-2 border-t border-primary-100 "><%=  comment.user.username%>:
           <span class="font-normal">
             <%= comment.body%>
           </span>
         </h3>
+        <%else%>
+        <h3 class="text-xs font-bold py-2 border-t border-primary-100 ">anonymous_user:
+          <span class="font-normal">
+            <%= comment.body%>
+          </span>
+        </h3>
+        <%end%>
       </div>
       <% if comment.user_id  == current_user&.id  %>
       <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>

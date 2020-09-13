@@ -5,10 +5,16 @@
       <div>
         <%= image_tag  @user.avatar, class:"rounded-full my-5 h-32 w-32 shadow-lg  " %>
       </div>
+      <%else%>
+      <%= image_tag("dp.png", :alt => "Default DP", class:"rounded-full my-5 h-32 w-32 shadow-lg " ) %>
       <%end%>
       <div class="py-3">
         <div class="flex justify-between">
+          <%if @user.name?%>
           <h3 class="text-black text-3xl font-bold text-primary-700 py-3 pr-3"><%=@user.name%></h3>
+          <%else%>
+          <h3 class="text-black text-3xl font-bold text-primary-700 py-3 pr-3">Anonymous User</h3>
+          <%end%>
           <% if @user.id == current_user&.id%>
           <a href="<%= edit_user_path(@user) %>" class="pt-5">
             <button class=" btn btn-primary-ghost"> Edit Profile</button>
@@ -31,7 +37,7 @@
         </h4>
         <a href="https://<%=@user.website%>" class="text-blue-700 pt-1" target="blank"><%=@user.website%></a>
         <div class="flex flex-col sm:flex-row justify-between ">
-          <div class="flex mt-2 ml-2">
+          <div class="flex mt-2 ">
             <i class="animate-pulse fas fa-map-marker-alt text-primary-500 text-lg"> </i>
             <p class="ml-2 text-sm font-bold text-primary-900">Location </p>
           </div>
@@ -45,22 +51,16 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <hr class="border-primary-100 mt-6" />
-
   <div class=" flex flex-wrap  max-w-3xl mx-auto py-4 justify-start">
     <% @posts.each do |post| %>
     <% if post.image.attached?%>
     <%= link_to post_path(post), class: "p-4" do %>
     <%= image_tag post.image ,class:"relative rounded-lg shadow-lg  object-cover h-56 w-56 bg-auto"%>
     <%end%>
-
-
     <%end%>
     <%end%>
-
-
   </div>
 </div>
