@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def create
     p = Post.create(post_params)
+    flash.notice = "Post Created Sucessfully"
     redirect_to root_path
   end
 
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy
-
+    flash.alert = "Post Deleted Sucessfully!"
     redirect_to user_path(current_user)
   end
 
