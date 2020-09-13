@@ -59,6 +59,18 @@
     <% if post.image.attached?%>
     <%= link_to post_path(post), class: "p-4" do %>
     <%= image_tag post.image ,class:"relative rounded-lg shadow-lg  object-cover h-56 w-56 bg-auto"%>
+    <div class="flex mt-2 ">
+      <div class="flex  ">
+        <i class="fas fa-heart text-primary-400 text-sm"></i>
+        <h3 class="ml-2 text-xs text-gray-600 "><%= post.likes.count %><%=post.likes.count <= 1 ? " like" : " likes"%></h3>
+      </div>
+      <div class="flex ml-4">
+        <i class="fas fa-comment-alt text-primary-400 text-sm"></i>
+        <h3 class="ml-2 text-xs text-gray-600 "><%=  post.comments.count %><%= post.comments.count <= 1 ? " Comment" : " Comments"%></h3>
+      </div>
+    </div>
+
+
     <%end%>
     <%end%>
     <%end%>
