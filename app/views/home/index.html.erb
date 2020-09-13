@@ -37,7 +37,7 @@
       <%= link_to post_path(post) do %>
       <% if post.image.attached? %>
       <div class="mx-auto">
-        <%= image_tag post.image ,class:"relative rounded-lg shadow-lg"%>
+        <%= image_tag post.image ,class:"relative w-full object-contain h-std rounded-lg shadow-lg"%>
       </div>
       <% end %>
       <%end%>

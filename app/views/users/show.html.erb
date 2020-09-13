@@ -54,7 +54,7 @@
     <% @posts.each do |post| %>
     <% if post.image.attached?%>
     <%= link_to post_path(post), class: "p-4" do %>
-    <%= image_tag post.image ,class:"relative rounded-lg shadow-lg h-56 w-56 bg-auto"%>
+    <%= image_tag post.image ,class:"relative rounded-lg shadow-lg  object-cover h-56 w-56 bg-auto"%>
     <%end%>
 
 
