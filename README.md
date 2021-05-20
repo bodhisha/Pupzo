@@ -1,24 +1,5 @@
-# README
+Pupzo is an online platform for pet lovers. People can share the photographs and moments with their pets on the feed. Other users can like and comment on the same. All the CRUD functionalities are implemented and is live.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Tech Stack
+Ruby on Rails
+Database : Postgres
